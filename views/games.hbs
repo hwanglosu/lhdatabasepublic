@@ -1,0 +1,56 @@
+{{!-- CITATION --}}
+{{!-- 3/16/2024 --}}
+{{!-- All below Code is fully Adapted from nodejs-starter-app from CS340 Winter 2024 term --}}
+{{!-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
+<!-- games.hbs -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Games</h1>
+
+{{!-- Below Code is Adapted from nodejs-starter-app Readme file from CS340 Winter 2024 term --}}
+{{!-- Create a table --}}
+<table id="games-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the gamingSessionID, PlayerID, tableID, playerBet and playerPayout, in order --}}
+        {{#each data}}
+        <tr data-value={{this.gameID}}>
+            <td>{{this.gameID}}</td>
+            <td>{{this.gameName}}</td>
+            <td><button onclick="deletegame({{this.gameID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_game.js"></script>
+
+<h2>Add a Game</h2>
+<p>To add a new game, please enter their information below and click 'Submit'!</p>
+<form id="add-game-form-ajax">
+    
+    <label for="input-gameName">gameName: </label>
+    <input type="text" required name="input-gameName" id="input-gameName">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_game.js"></script>

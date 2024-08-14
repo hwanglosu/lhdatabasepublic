@@ -1,0 +1,81 @@
+{{!-- CITATION --}}
+{{!-- 3/16/2024 --}}
+{{!-- All below Code is fully Adapted from nodejs-starter-app from CS340 Winter 2024 term --}}
+{{!-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
+<!-- index.hbs -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Employees</h1>
+{{!-- Below Code is Adapted from nodejs-starter-app Readme file from CS340 Winter 2024 term --}}
+{{!-- Create a table --}}
+<table id="employees-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the employeeID, PlayerID, tableID, playerBet and playerPayout, in order --}}
+        {{#each data}}
+        <tr data-value={{this.employeeID}}>
+            <td>{{this.employeeID}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.birthdate}}</td>
+            <td>{{this.dailyWage}}</td>
+            <td>{{this.tableID}}</td>
+            <td><button onclick="deleteEmployee({{this.employeeID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_employee.js"></script>
+
+<h2>Add an Employee</h2>
+<p>To add a new gaming session, please enter their information below and click 'Submit'!</p>
+<form id="add-employee-form-ajax">
+    
+    {{!-- <label for="input-playerID">playerID: </label>
+    <input type="number" name="input-playerID" id="input-playerID"> --}}
+    
+    <label for="input-firstName">firstName: </label>
+    <input type="text" required name="input-firstName" id="input-firstName" >
+    
+    <label for="input-lastName">lastName: </label>
+    <input type="text" required name="input-lastName" id="input-lastName">
+
+    <label for="input-birthdate">birthdate: </label>
+    <input type="date" required name="input-birthdate" id="input-birthdate">
+
+    <label for="input-dailyWage">dailyWage: </label>
+    <input type="number" required name="input-dailyWage" id="input-dailyWage" min="0.01" step="0.01">
+
+    <select name="input-tableID" id="input-tableID" required>
+        <option value="">Select a Table</option>
+        {{#each tables}}
+        <option value="{{this.tableID}}">{{this.tableID}}</option>
+        {{/each}}
+        <option value="NULL">Set to NULL</option>
+    </select>
+    
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_employee.js"></script>
+
+

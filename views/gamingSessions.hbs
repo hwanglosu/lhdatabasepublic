@@ -1,0 +1,127 @@
+{{!-- CITATION --}}
+{{!-- 3/16/2024 --}}
+{{!-- All below Code is fully Adapted from nodejs-starter-app from CS340 Winter 2024 term --}}
+{{!-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
+<!-- index.hbs -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Gaming Sessions</h1>
+{{!-- Below Code is Adapted from nodejs-starter-app Readme file from CS340 Winter 2024 term --}}
+{{!-- Create a table --}}
+<table id="gamingSessions-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the gamingSessionID, PlayerID, tableID, playerBet and playerPayout, in order --}}
+        {{#each data}}
+        <tr data-value={{this.gamingSessionID}}>
+            <td>{{this.gamingSessionID}}</td>
+            <td>{{this.playerID}}</td>
+            <td>{{this.tableID}}</td>
+            <td>{{this.playerBet}}</td>
+            <td>{{this.playerPayout}}</td>
+            <td>{{this.gameDate}}</td>
+            <td><button onclick="deleteGamingSession({{this.gamingSessionID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_gaming_session.js"></script>
+
+<h2>Add a Gaming Session</h2>
+<p>To add a new gaming session, please enter their information below and click 'Submit'!</p>
+<form id="add-gaming-session-form-ajax">
+    
+    {{!-- <label for="input-playerID">playerID: </label>
+    <input type="number" name="input-playerID" id="input-playerID"> --}}
+    
+    <select name="input-playerID" id="input-playerID" required>
+        <option value="">Select a Player</option>
+        {{#each players}}
+        <option value="{{this.playerID}}">{{this.playerID}}: {{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+    </select>
+    
+    {{!-- <label for="input-tableID">tableID: </label>
+    <input type="number" name="input-tableID" id="input-tableID"> --}}
+
+    <select name="input-tableID" id="input-tableID" required>
+        <option value="">Select a Table</option>
+        {{#each tables}}
+        <option value="{{this.tableID}}">{{this.tableID}}</option>
+        {{/each}}
+    </select>
+
+
+    <label for="input-playerBet">playerBet: </label>
+    <input type="number" name="input-playerBet" id="input-playerBet" min="0.01" step="0.01" required>
+
+    <label for="input-playerPayout">playerPayout: </label>
+    <input type="number" name="input-playerPayout" id="input-playerPayout" min="0" step="0.01" required>
+
+    <label for="input-gameDate">gameDate: </label>
+    <input type="date" name="input-gameDate" id="input-gameDate" required> 
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_gaming_session.js"></script>
+
+
+{{!-- UPDATE SECTION --}}
+<h2>Update a Gaming Session</h2>
+<p>To update a gaming session, fill out the below information and click 'Submit'!</p>
+<form id="update-gaming-session-form-ajax">
+    <select name="update-gamingSessionID" required id="update-gamingSessionID">
+        <option value="">Select a Gaming Session ID</option>
+        {{#each data}}
+        <option value="{{this.gamingSessionID}}">{{this.gamingSessionID}}</option>
+        {{/each}}
+    </select>
+
+    <select name="update-playerID" required id="update-playerID">
+        <option value="">Select a Player</option>
+        {{#each players}}
+        <option value="{{this.playerID}}">{{this.playerID}}: {{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+        <option value="NULL">Set to NULL</option>
+    </select>
+
+    <select name="update-tableID" required id="update-tableID">
+        <option value="">Select a Table</option>
+        {{#each tables}}
+        <option value="{{this.tableID}}">{{this.tableID}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="update-playerBet">playerBet: </label>
+    <input type="number" name="update-playerBet" id="update-playerBet" min="0.01" step="0.01" required>
+
+    <label for="input-playerPayout">playerPayout: </label>
+    <input type="number" name="update-playerPayout" id="update-playerPayout" min="0" step="0.01" required>
+
+    <label for="update-gameDate">gameDate: </label>
+    <input type="date" name="update-gameDate" id="update-gameDate" required>
+    
+    <input type="submit">
+</form>
+
+<script src="./js/update_gaming_session.js"></script>

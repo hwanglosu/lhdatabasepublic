@@ -1,0 +1,85 @@
+/* 
+CITATION
+3/16/2024    
+The CSS file was adapted from the CS 290 stylesheet templete, and the link to the skeleton code is at 
+https://replit.com/@PamVanLonden/a-Global-Stylesheet#App.css
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Righteous&display=swap');
+
+
+/*   ----- Variables  -----  */
+:root {
+    --darkblue: #35648C;
+    --golden: #F0E68C;
+    --red: #8B0000;
+    --indigo: #4B0082;
+    --darkgreen: #006400;
+    --yellowgreen: #9ACD32;
+    --yellow: #FFFF00;
+  }
+  
+  /*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+  body {       /* Can alternatively define in html {} or :root {} */
+    background-color: var(--golden);
+    background-size: cover;
+    color:var(--darkgreen);
+    margin: 30px;
+    padding: 30px;
+    max-width: 95%;
+  }
+  
+  /*  ----- Page layout blocks -----  */
+  header {
+    color:var(--indigo);
+  }
+  
+  /*  ----- Navigation ----- Override text links for navigation only.  */
+  nav {
+    text-decoration: none;
+  }
+  nav a {
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid var(--tan);
+    background-color: var(--yellow);
+    font-family: 'Righteous';
+    color: var(--darkblue);
+  }
+  nav a:hover {
+    font-weight: bolder;
+    background-color: var(--yellowgreen);
+  }
+  
+  
+  /*  ----- Table ----- */
+  table {
+    border: 1px solid;
+    margin: 5px;
+    padding: 10px;
+    color: var(--red);
+  }
+
+
+  th {
+    border: 1px solid;
+    margin: 3px;
+    padding: 8px;
+  }
+  td {
+    border: 1px solid;
+    margin: 3px;
+    padding: 8px;
+  }
+  
+  @keyframes App-logo {}
+  
+  /*   ===== TABLET  media query overrides mobile styles ===== */
+  @media all and (min-width: 600px) {}
+  
+  /*   ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+  @media all and (min-width: 1080px) {}
+  
+  /*   ===== PRINT  media query overrides previous styles =====  */
+  @media print {}

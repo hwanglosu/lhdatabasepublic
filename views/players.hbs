@@ -1,0 +1,75 @@
+{{!-- CITATION --}}
+{{!-- 3/16/2024 --}}
+{{!-- All below Code is fully Adapted from nodejs-starter-app from CS340 Winter 2024 term --}}
+{{!-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
+
+<!-- index.hbs -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Players</h1>
+{{!-- Below Code is Adapted from nodejs-starter-app Readme file from CS340 Winter 2024 term --}}
+{{!-- Create a table --}}
+<table id="players-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the playerID, PlayerID, tableID, playerBet and playerPayout, in order --}}
+        {{#each data}}
+        <tr data-value={{this.playerID}}>
+            <td>{{this.playerID}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.birthdate}}</td>
+            <td>{{this.moneySpent}}</td>
+            <td><button onclick="deletePlayer({{this.playerID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_player.js"></script>
+
+<h2>Add a Player</h2>
+<p>To add a new gaming session, please enter their information below and click 'Submit'!</p>
+<form id="add-player-form-ajax">
+    
+    {{!-- <label for="input-playerID">playerID: </label>
+    <input type="number" name="input-playerID" id="input-playerID"> --}}
+    
+    <label for="input-firstName">firstName: </label>
+    <input type="text" name="input-firstName" id="input-firstName" required>
+    
+    <label for="input-lastName">lastName: </label>
+    <input type="text" name="input-lastName" id="input-lastName" required>
+
+    <label for="input-email">email: </label>
+    <input type="email" name="input-email" id="input-email" required>
+
+    <label for="input-birthdate">birthdate: </label>
+    <input type="date" name="input-birthdate" id="input-birthdate" required>
+
+    <label for="input-moneySpent">moneySpent: </label>
+    <input type="number" name="input-moneySpent" id="input-moneySpent" min="0" step="0.01" required>
+    
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_player.js"></script>
+
